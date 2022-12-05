@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SheepController : MonoBehaviour
@@ -7,7 +6,6 @@ public class SheepController : MonoBehaviour
     private Animator anim;
     private CharacterController cc;
     public Transform dogPosition;
-    private GameManagement gameManagerScript;
     private AudioSource beeSFX;
 
     public float fearDistance = 7f;
@@ -16,7 +14,6 @@ public class SheepController : MonoBehaviour
 
     void Start()
     {
-        //gameManagerScript = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManagement>();
         beeSFX = GetComponent<AudioSource>();
         fearDistance = Random.Range(4f, 7f);
         cc = GetComponent<CharacterController>();

@@ -374,13 +374,11 @@
 -r:"Library/Bee/artifacts/1900b0aE.dag/UnityEngine.UI.ref.dll"
 "Assets/BrokenVector/LowPolyFencePack/Scripts/DoorController.cs"
 "Assets/BrokenVector/LowPolyFencePack/Scripts/DoorToggle.cs"
+"Assets/DetectWinManager.cs"
 "Assets/DogAgentController.cs"
+"Assets/GameManager.cs"
 "Assets/Quirky Series/Pets/Dog/Demo/_Scripts/Demo.cs"
-"Assets/Scripts/CameraController.cs"
-"Assets/Scripts/GameManagement.cs"
-"Assets/Scripts/PlayerController.cs"
 "Assets/Scripts/SheepController.cs"
-"Assets/Scripts/SheepGettingIn.cs"
 -langversion:9.0
 
 /deterministic
