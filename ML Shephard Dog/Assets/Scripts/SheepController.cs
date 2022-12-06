@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using Unity.MLAgents;
 
 public class SheepController : MonoBehaviour
 {
@@ -7,10 +8,13 @@ public class SheepController : MonoBehaviour
     private CharacterController cc;
     public Transform dogPosition;
     private AudioSource beeSFX;
+    private Agent dogAgent;
 
     public float fearDistance = 7f;
     public float moveSpeed = 10f;
     public float rotSpeed = 10f;
+
+    public bool canMove;
 
     void Start()
     {
@@ -19,23 +23,31 @@ public class SheepController : MonoBehaviour
         cc = GetComponent<CharacterController>();
         anim = GetComponentInChildren<Animator>();
         StartCoroutine(SheepBee());
+
+        canMove = true;
+        dogAgent = dogPosition.gameObject.GetComponent<DogAgentController>();
     }
 
     void Update()
     {
-        if (Vector3.Distance(transform.position, dogPosition.position) <= fearDistance)
+        if (canMove)
         {
-            Vector3 lookinAt = -(dogPosition.position - transform.position);
-            Quaternion lookinRot = Quaternion.LookRotation(lookinAt);
-            lookinRot.eulerAngles = new Vector3(transform.rotation.eulerAngles.x, lookinRot.eulerAngles.y, transform.rotation.eulerAngles.z);
-            transform.rotation = Quaternion.Slerp(transform.rotation, lookinRot, Time.deltaTime * rotSpeed);
-            Vector3 moveDirection = transform.TransformDirection(Vector3.forward) * moveSpeed;
-            cc.Move(moveDirection * Time.deltaTime);
-            anim.SetBool("mustRun", true);
-        }
-        else
-        {
-            anim.SetBool("mustRun", false);
+            if (Vector3.Distance(transform.position, dogPosition.position) <= fearDistance)
+            {
+                Vector3 lookinAt = -(dogPosition.position - transform.position);
+                Quaternion lookinRot = Quaternion.LookRotation(lookinAt);
+                lookinRot.eulerAngles = new Vector3(transform.rotation.eulerAngles.x, lookinRot.eulerAngles.y, transform.rotation.eulerAngles.z);
+                transform.rotation = Quaternion.Slerp(transform.rotation, lookinRot, Time.deltaTime * rotSpeed);
+                Vector3 moveDirection = transform.TransformDirection(Vector3.forward) * moveSpeed;
+                cc.Move(moveDirection * Time.deltaTime);
+                anim.SetBool("mustRun", true);
+
+                dogAgent.AddReward(0.001f);
+            }
+            else
+            {
+                anim.SetBool("mustRun", false);
+            }
         }
     }
 

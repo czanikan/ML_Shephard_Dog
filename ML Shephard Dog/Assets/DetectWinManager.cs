@@ -10,7 +10,11 @@ public class DetectWinManager : MonoBehaviour
     {
         if (other.gameObject.tag == "Sheep")
         {
-            gameManager.RoundOver();
+            gameManager.RoundOver(true);
+        }
+        if(other.gameObject.tag == "Player")
+        {
+            gameManager.RoundOver(false);
         }
     }
 }

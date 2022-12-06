@@ -21,9 +21,15 @@ public class GameManager : MonoBehaviour
     private void ResetEpisode()
     {
         dogAgent.transform.position = dogAgent.GetComponent<DogAgentController>().startPos;
-        sheep.transform.position = sheepStartPos + new Vector3(Random.Range(-3, 3), 0, Random.Range(-3, 3));
-
+        Vector3 sheepNewPos = sheepStartPos + new Vector3(Random.Range(-3, 3), 0, Random.Range(-3, 3));
+        sheep.GetComponent<CharacterController>().enabled = false;
+        sheep.transform.position = sheepNewPos;
+        Debug.Log(sheepNewPos);
         dogAgent.GetComponent<Rigidbody>().velocity = Vector3.zero;
+
+        sheep.GetComponent<CharacterController>().enabled = true;
+        // erre azért volt szükség, mert egyes esetekben a birka mozgása felülírta a kezdõ pozícióra 
+        // való helyezést, így technikailag ott maradt, ahol volt (a karámban).
 
         resetTimer = 0;
     }
@@ -38,9 +44,13 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void RoundOver()
+    public void RoundOver(bool isWin)
     {
-        dogAgent.GetComponent<Agent>().AddReward(1 - (float)resetTimer / MaxEnvironmentSteps);
+        if(isWin)
+        {
+            dogAgent.GetComponent<Agent>().AddReward(1 - (float)resetTimer / MaxEnvironmentSteps);
+        }
+
         dogAgent.GetComponent<Agent>().EndEpisode();
 
         ResetEpisode();

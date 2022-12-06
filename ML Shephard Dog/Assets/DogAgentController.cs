@@ -56,9 +56,6 @@ public class DogAgentController : Agent
             case 1:
                 dirToGo = transform.forward * 1;
                 break;
-            case 2:
-                dirToGo = transform.forward * -1;
-                break;
         }
 
         switch (rotateAxis)
