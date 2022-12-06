@@ -5,6 +5,6 @@
  
  ## Authors
 
-- Tünde Tutor [@tundetutor](https://www.github.com/tundetutor)
+- Tünde Tutor [@tundetutor](https://www.github.com/tundetml)
 
 - Andrew Czanik [@czanikan](https://www.github.com/czanikan)
