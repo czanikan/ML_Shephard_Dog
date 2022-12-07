@@ -1039,7 +1039,7 @@ MonoBehaviour:
     VectorActionDescriptions: []
     VectorActionSpaceType: 0
     hasUpgradedBrainParametersWithActionSpec: 1
-  m_Model: {fileID: 5022602860645237092, guid: 5e212bbda4156324288e0d933ca7652c, type: 3}
+  m_Model: {fileID: 5022602860645237092, guid: 8e6f15547d080f04991f0c7bc4945e92, type: 3}
   m_InferenceDevice: 1
   m_BehaviorType: 0
   m_BehaviorName: ShephardDog
