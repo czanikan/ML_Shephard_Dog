@@ -1,7 +1,6 @@
 using UnityEngine;
 using Unity.MLAgents;
 using Unity.MLAgents.Actuators;
-using Unity.MLAgents.Policies;
 
 public class DogAgentController : Agent
 {
@@ -28,10 +27,6 @@ public class DogAgentController : Agent
         if (Input.GetKey(KeyCode.W))
         {
             discreteActionsOut[0] = 1;
-        }
-        if (Input.GetKey(KeyCode.S))
-        {
-            discreteActionsOut[0] = 2;
         }
         
         if (Input.GetKey(KeyCode.A))

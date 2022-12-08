@@ -39,7 +39,7 @@ public class GameManager : MonoBehaviour
         resetTimer += 1;
         if (resetTimer >= MaxEnvironmentSteps && MaxEnvironmentSteps > 0)
         {
-            dogAgent.GetComponent<Agent>().EpisodeInterrupted();
+            dogAgent.GetComponent<DogAgentController>().EpisodeInterrupted();
             ResetEpisode();
         }
     }
@@ -48,10 +48,10 @@ public class GameManager : MonoBehaviour
     {
         if(isWin)
         {
-            dogAgent.GetComponent<Agent>().AddReward(1 - (float)resetTimer / MaxEnvironmentSteps);
+            dogAgent.GetComponent<DogAgentController>().AddReward(1 - (float)resetTimer / MaxEnvironmentSteps);
         }
 
-        dogAgent.GetComponent<Agent>().EndEpisode();
+        dogAgent.GetComponent<DogAgentController>().EndEpisode();
 
         ResetEpisode();
     }
